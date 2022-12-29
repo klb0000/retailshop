@@ -2,29 +2,108 @@ package retail_shop
 
 import (
 	"errors"
+
+	"gorm.io/gorm"
 )
 
 var ErrInvalidIdString = errors.New("id string is not valid ")
+var ErrInvalidProduct = errors.New("product detail not valid")
+var ErrProductNameExists = errors.New("name of product already exists in database")
+var ErrUnableToUpdateProduct = errors.New("unable to update product")
 
-func GetById(id string) (*Product, error) {
-	if len(id) < 3 || len(id) > MaxIdLen {
-		return nil, ErrInvalidIdString
-	}
-	var info = new(Product)
-	err := DB.First(info, "id=?", id).Error
-
-	return info, err
+func isValidId(id string) bool {
+	return len(id) > 3 && len(id) <= MaxIdLen
 }
 
-func GetPriceAbove(price int) []Product {
+func GetById(id string, db *gorm.DB) (*Product, error) {
+	if !isValidId(id) {
+		return nil, ErrInvalidIdString
+	}
+	var product = new(Product)
+	err := db.First(product, "id=?", id).Error
+
+	return product, err
+}
+
+func GetByName(name string, db *gorm.DB) (*Product, error) {
+	if len(name) < MinProductNameLen {
+		return nil, ErrInvalidProduct
+	}
+	var pd = new(Product)
+	err := db.First(pd, "name=?", name).Error
+	return pd, err
+}
+
+func GetPriceAbove(price int, db *gorm.DB) []Product {
 	var infos []Product
-	DB.Where("price > ?", price).Find(&infos)
+	db.Where("price > ?", price).Find(&infos)
 	return infos
 }
 
-func SaveProduct(p *Product) error {
-		panic("not implemented")
-		return  nil
+func isValidProduct(p *Product) bool {
+	return isValidId(p.ID) &&
+		len(p.Name) >= MinProductNameLen
 }
 
+func ProductNameExists(name string, db *gorm.DB) bool {
+	pd, err := GetByName(name, db)
+	if err == nil {
+		return pd.Name == name
+	}
+	return false
+}
 
+func ProductIdExist(id string, db *gorm.DB) bool {
+	pd, err := GetById(id, db)
+	if err == nil {
+		return pd.ID == id
+	}
+	return false
+}
+
+func SaveProduct(p *Product, db *gorm.DB) error {
+	if !isValidProduct(p) {
+		return ErrInvalidProduct
+	}
+	if ProductNameExists(p.Name, db) {
+		return ErrProductNameExists
+	}
+	// if id already exist than function which creates product has bug
+	if ProductIdExist(p.ID, db) {
+		panic("product id alerady exist\n. Bug exist in function to create product")
+	}
+
+	return db.Create(p).Error
+}
+
+func DeleteById(id string, db *gorm.DB) error {
+	pd := Product{ID: id}
+	return db.Delete(&pd).Error
+}
+
+// need to rewrite this
+// Just was lazy to read gorm documentation to proprely update
+func UpdateProduct(oldP, newP *Product, db *gorm.DB) error {
+
+	//delete old product
+	err := DeleteById(oldP.ID, db)
+	if err != nil {
+		return err
+	}
+	// save new product
+	err = SaveProduct(newP, db)
+
+	// if unable to save product
+	if err != nil {
+		saveErr := SaveProduct(newP, db)
+
+		//if unable to save previously deleted prodcut
+		if saveErr != nil {
+			panic("error updating prodcut")
+		}
+		return ErrUnableToUpdateProduct
+	}
+
+	return nil
+
+}
