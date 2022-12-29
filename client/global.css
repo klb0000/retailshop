@@ -1,0 +1,37 @@
+input {
+    /* Apply some basic styles */
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 20px;
+  
+    /* Add some hover effects */
+    /* transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    &:hover {
+      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    } */
+  }
+  button {
+    font-size: 25px;
+  }
+  
+  table {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    font-size: 20px;
+  }
+  
+  th {
+    background-color: lightgray;
+  }
