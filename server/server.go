@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"projects/retailshop"
+	"github.com/klb0000/retailshop"
 )
 
 var defaultDB = retailshop.DefaultDB
