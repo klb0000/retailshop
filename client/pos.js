@@ -5,8 +5,17 @@ const defaultTransaction = {
     'cashRecieved': null,
     'tRowsStack' : []
 }
+console.log('debug mode')
 
 
+const scanSound = new Audio('barcode-sound.mp3')
+
+const dummySound = new Audio('barcode-sound.mp3')
+dummySound.volume = 0
+setInterval(()=>{
+    dummySound.currentTime = 0
+    sound.play()
+}, 1000)
 
 function newProduct(id, pName, price, discount, taxP) {
     return {
@@ -88,9 +97,6 @@ function  calculateGrandTotal(transaction) {
     return detail
 }
 
-
-
-
 function addProductToTransaction(transaction, product, tracker) {   
         
     // if transaction already has product
@@ -147,8 +153,8 @@ function deleteFromTransaction() {
     renderTransTable(defaultTransaction)
 }
 
-//-----------------------------     PAGE RENDERING   ------------------------//
 
+//-----------------------------     PAGE RENDERING   ------------------------//
 
 function initTables(tableId, total)
 {
@@ -249,25 +255,32 @@ function updateTime() {
 
 //------------------AJAX request----------------------------------------//
 function getProduct() {
+    // const scanSound = document.getElementById("scan-audio");
+    // scanSound.preload = "auto";
     const input = document.getElementById("in")
     const q = input.value
     var r = new XMLHttpRequest()
     r.open('GET', 'http://localhost:8080/getByID?id='+q)
-    
+
     r.onload = ()=> {
         
         if (r.status !== 200) {
             console.log('not ok')
             return
         }
-        const scanSound = new Audio('barcode-sound.mp3')
+       
         const scanButtom = document.getElementById('scan-b')
         scanButtom.disabled = true
         // responseJsonText = r.responseText
         obj = JSON.parse(r.responseText)
         const pd = newProduct(id=obj.ID, pName=obj.Name, price=obj.Price, discount=0, taxP=8)
         addProductToTransaction(defaultTransaction, pd, tracker)
-        scanSound.play()
+        if (!scanSound.paused) {
+            scanSound.currentTime = 0;
+            scanSound.play()
+        }else{
+            scanSound.play()
+        }
         scanButtom.disabled = false
         renderTransTable(defaultTransaction)
 
@@ -297,14 +310,6 @@ function getProduct() {
 //----------------------------------------------------------------------------------//
 
 
-
-var prdouctSample = {
-    'id' : '0001',
-    'pName': 'product 1',
-    'discount': 0,
-    'taxP' : 8,
-    'price': 100,
-}
 
 const scan = document.getElementById("in");
 // scan.addEventListener("keydown", getProduct())
@@ -350,7 +355,6 @@ keypadDelete.addEventListener('click', ()=> {
         currentFocusedInput.value = v.slice(0, v.length-1)
     }
 })
-
 
 
 const payForm = document.getElementById('pay-form');
