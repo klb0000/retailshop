@@ -1,4 +1,4 @@
-package retail_shop
+package retailshop
 
 import (
 	"errors"
@@ -15,7 +15,7 @@ func isValidId(id string) bool {
 	return len(id) > 3 && len(id) <= MaxIdLen
 }
 
-func GetById(id string, db *gorm.DB) (*Product, error) {
+func GetProductById(id string, db *gorm.DB) (*Product, error) {
 	if !isValidId(id) {
 		return nil, ErrInvalidIdString
 	}
@@ -25,7 +25,7 @@ func GetById(id string, db *gorm.DB) (*Product, error) {
 	return product, err
 }
 
-func GetByName(name string, db *gorm.DB) (*Product, error) {
+func GetProductByName(name string, db *gorm.DB) (*Product, error) {
 	if len(name) < MinProductNameLen {
 		return nil, ErrInvalidProduct
 	}
@@ -34,7 +34,13 @@ func GetByName(name string, db *gorm.DB) (*Product, error) {
 	return pd, err
 }
 
-func GetPriceAbove(price int, db *gorm.DB) []Product {
+func GetAllProducts(db *gorm.DB) ([]Product, error) {
+	var products []Product
+	result := db.Find(&products)
+	return products, result.Error
+}
+
+func GetProductAbovePrice(price int, db *gorm.DB) []Product {
 	var infos []Product
 	db.Where("price > ?", price).Find(&infos)
 	return infos
@@ -46,7 +52,7 @@ func isValidProduct(p *Product) bool {
 }
 
 func ProductNameExists(name string, db *gorm.DB) bool {
-	pd, err := GetByName(name, db)
+	pd, err := GetProductByName(name, db)
 	if err == nil {
 		return pd.Name == name
 	}
@@ -54,7 +60,7 @@ func ProductNameExists(name string, db *gorm.DB) bool {
 }
 
 func ProductIdExist(id string, db *gorm.DB) bool {
-	pd, err := GetById(id, db)
+	pd, err := GetProductById(id, db)
 	if err == nil {
 		return pd.ID == id
 	}
@@ -70,23 +76,23 @@ func SaveProduct(p *Product, db *gorm.DB) error {
 	}
 	// if id already exist than function which creates product has bug
 	if ProductIdExist(p.ID, db) {
-		panic("product id alerady exist\n. Bug exist in function to create product")
+		panic("product id alerady exists")
 	}
 
 	return db.Create(p).Error
 }
 
-func DeleteById(id string, db *gorm.DB) error {
+func DeleteProductById(id string, db *gorm.DB) error {
 	pd := Product{ID: id}
 	return db.Delete(&pd).Error
 }
 
 // need to rewrite this
-// Just was lazy to read gorm documentation to proprely update
+// Just was lazy to read gorm documentation
 func UpdateProduct(oldP, newP *Product, db *gorm.DB) error {
 
 	//delete old product
-	err := DeleteById(oldP.ID, db)
+	err := DeleteProductById(oldP.ID, db)
 	if err != nil {
 		return err
 	}

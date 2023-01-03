@@ -1,4 +1,4 @@
-package retail_shop
+package retailshop
 
 import (
 	"os"
@@ -22,3 +22,4 @@ func GetDB(file string) *gorm.DB {
 	}
 	return db
 }
+

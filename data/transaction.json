@@ -1,0 +1,14 @@
+{
+    "id":null,
+    "startTime":1672655347798,
+    "completeTime":null,
+    "totalCost":616,
+    "cashRecieved":1000,
+    "tRowsStack":
+        [
+            {"pid":"1000","qty":1,"pName":"hot lemon tea","uPrice":150,"discount":0,"taxP":8,"taxAmount":12,"cost":150},
+            {"pid":"1002","qty":1,"pName":"ice tea regular","uPrice":100,"discount":0,"taxP":8,"taxAmount":8,"cost":100},
+            {"pid":"1003","qty":1,"pName":"regular black coffee","uPrice":100,"discount":0,"taxP":8,"taxAmount":8,"cost":100},
+            {"pid":"1004","qty":1,"pName":"Lays potato chips large","uPrice":220,"discount":0,"taxP":8,"taxAmount":18,"cost":220}
+        ]
+}

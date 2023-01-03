@@ -5,7 +5,7 @@
     </head>
     <body>
         <input type="text" id="in" size="60">
-        <button onclick="sendQuery()">send</button>
+        <button class="search-button" onclick="sendQuery()">SEARCH</button>
         <h2 id="result"></h3>
         <table id="products"></table>
     </body>
@@ -14,19 +14,29 @@
 
         <script>
                 
-                function sendQuery () {
-                const q = document.getElementById("in").value
+            function sendQuery () {
+                const input = document.getElementById("in")
+                const q = input.value
                 // console.log(q.value)
                 var r = new XMLHttpRequest()
                 r.open('GET', 'http://localhost:8080/getByID?id='+q)
                 
                 r.onload = ()=> {
+                    const table = document.getElementById("products")
+                    const result = document.getElementById("result")
+                    
+                    if (r.status !== 200) {
+                        // alert(`product with id ${q} not found`)
+                        table.innerHTML= ''
+                        result.innerHTML = `your search with product id ${q} had no result
+                        enter the correct product id and try again`
+                        return
+                    }
 
                     // console.log(r.responseText)
-                    const result = document.getElementById("result")
-                    result.innerHTML = 'Search Result'
+                    result.innerHTML = `Search Result for ${q}:`
+                    input.value = ''
                     const jsonObj = JSON.parse(r.responseText)
-                    const table = document.getElementById("products")
                             table.innerHTML =`
                             <tr>
                                 <th>#</th>
@@ -46,7 +56,7 @@
                                     }
                 console.log('sending request')
                 r.send()
-                } 
+            } 
                 
         </script>
  

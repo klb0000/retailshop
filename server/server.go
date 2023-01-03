@@ -1,17 +1,31 @@
 package server
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"projects/retailshop"
 )
 
+var defaultDB = retailshop.DefaultDB
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprintf(w, "home page")
 }
+
+// func handleCompleteTransaction(w http.ResponseWriter, r *http.Request) {
+// 	data, err := io.ReadAll(r)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	jDecoder := json.NewDecoder(bytes.NewBuffer(data))
+// 	var m map[string]interface{}
+// 	jDecoder.Decode(&m)
+// }
 
 func handleGetAllPrdocuts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -45,9 +59,36 @@ func GetById(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func CreateProduct(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		w.WriteHeader(http.StatusConflict)
+		return
+	}
+	var pd retailshop.Product
+	if err := json.NewDecoder(bytes.NewReader(body)).
+		Decode(&pd); err != nil {
+
+		w.WriteHeader(http.StatusConflict)
+		return
+	}
+	fmt.Println(pd)
+
+	if err := retailshop.SaveProduct(&pd, defaultDB); err != nil {
+		w.WriteHeader(http.StatusConflict)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+
+}
+
 func Serve(addr string) {
-	http.HandleFunc("/", homeHandler)
+	// http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/getAll", handleGetAllPrdocuts)
 	http.HandleFunc("/getByID", GetById)
+	http.HandleFunc("/createProduct", CreateProduct)
+	http.Handle("/", http.FileServer(http.Dir("/Users/vikram/go/src/projects/retailshop/client")))
 	log.Fatal(http.ListenAndServe(addr, nil))
 }

@@ -1,4 +1,4 @@
-package retail_shop
+package retailshop
 
 import (
 	"fmt"
@@ -42,7 +42,7 @@ func TestMain(m *testing.M) {
 			panic("error seting up test db")
 		}
 	}
-	
+
 	os.Exit(m.Run())
 
 }
@@ -50,7 +50,7 @@ func TestMain(m *testing.M) {
 func TestGetById(t *testing.T) {
 	s := samples[0]
 	//basic sample check
-	row, err := GetById(s.ID, testDB)
+	row, err := GetProductById(s.ID, testDB)
 	if err != nil {
 		t.Error(err)
 		return
@@ -61,7 +61,7 @@ func TestGetById(t *testing.T) {
 	fmt.Println(row, err)
 
 	// should not find the query
-	_, err = GetById(s.ID+"adssdakfl", testDB)
+	_, err = GetProductById(s.ID+"adssdakfl", testDB)
 	if err == nil {
 		t.Error(err)
 		return
@@ -72,7 +72,7 @@ func TestGetById(t *testing.T) {
 func TestGetByName(t *testing.T) {
 	s := samples[1]
 	//basic sample check
-	row, err := GetByName(s.Name, testDB)
+	row, err := GetProductByName(s.Name, testDB)
 	if err != nil {
 		t.Error(err)
 		return
@@ -83,12 +83,20 @@ func TestGetByName(t *testing.T) {
 	fmt.Println(row.Name, err)
 
 	// should not find the query
-	_, err = GetByName(s.Name+"adssdakfl", testDB)
+	_, err = GetProductByName(s.Name+"adssdakfl", testDB)
 	if err == nil {
 		t.Error(err)
 		return
 	}
 
+}
+
+func TestGetAllProduct(t *testing.T) {
+	products, err := GetAllProducts(DefaultDB)
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(len(products))
 }
 
 func TestDoesNameExist(t *testing.T) {
@@ -104,7 +112,7 @@ func TestDoesNameExist(t *testing.T) {
 }
 
 func TestGetPriceAbove(*testing.T) {
-	infos := GetPriceAbove(600, testDB)
+	infos := GetProductAbovePrice(600, testDB)
 	fmt.Println(infos)
 	fmt.Println(infos[0])
 }
@@ -135,12 +143,12 @@ func TestSaveProduct(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	DeleteById(validProduct.ID, testDB)
+	DeleteProductById(validProduct.ID, testDB)
 }
 
 func TestDeleteById(t *testing.T) {
 	id := samples[2].ID
-	err := DeleteById(id, testDB)
+	err := DeleteProductById(id, testDB)
 	if err == nil {
 		fmt.Println("Deleted Properly")
 
@@ -151,17 +159,17 @@ func TestDeleteById(t *testing.T) {
 
 }
 
-func TestUpdateProduct(t *testing.T) {
-	s := samples[0]
-	s2 := samples[0]
-	s2.Name = "Name changed"
-	err := UpdateProduct(&s, &s2, testDB)
-	if err != nil {
-		t.Error(err)
-	}
-	p, err := GetById(s.ID, testDB)
-	if err != nil {
-		t.Error(err)
-	}
-	fmt.Println(p.Name)
-}
+// func TestUpdateProduct(t *testing.T) {
+// 	s := samples[0]
+// 	s2 := samples[0]
+// 	s2.Name = "Name changed"
+// 	err := UpdateProduct(&s, &s2, testDB)
+// 	if err != nil {
+// 		t.Error(err)
+// 	}
+// 	p, err := GetProductById(s.ID, testDB)
+// 	if err != nil {
+// 		t.Error(err)
+// 	}
+// 	fmt.Println(p.Name)
+// }

@@ -1,0 +1,9 @@
+client: complete transaction:
+    send transaction to backend 
+    jsonify transaction
+
+
+backend: recieve transaction
+    check integrity
+    save transaction
+
