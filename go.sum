@@ -3,8 +3,8 @@ github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkr
 github.com/jinzhu/now v1.1.4/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
-github.com/klb0000/retailshop v0.0.0-20230103000300-18e9a4b37ada h1:bMoogw/RfhI6VKH/vePa3p+mwb6uqqZal4LyCoQwSak=
-github.com/klb0000/retailshop v0.0.0-20230103000300-18e9a4b37ada/go.mod h1:KVbVeFwK3tCNUhxhVczlwQzXuNR4e+AYFjz3vkPo7z8=
+github.com/klb0000/retailshop v0.0.0-20230103013622-d96e79e271db h1:4BFzXSEHRSBhsh0hIRchMnENlP2wfFP1WfoGJfY/51g=
+github.com/klb0000/retailshop v0.0.0-20230103013622-d96e79e271db/go.mod h1:KVbVeFwK3tCNUhxhVczlwQzXuNR4e+AYFjz3vkPo7z8=
 github.com/mattn/go-sqlite3 v1.14.15/go.mod h1:2eHXhiwb8IkHr+BDWZGa96P6+rkvnG63S2DGjv9HUNg=
 github.com/mattn/go-sqlite3 v1.14.16 h1:yOQRA0RpS5PFz/oikGwBEqvAWhWg5ufRz4ETLjwpU1Y=
 github.com/mattn/go-sqlite3 v1.14.16/go.mod h1:2eHXhiwb8IkHr+BDWZGa96P6+rkvnG63S2DGjv9HUNg=
