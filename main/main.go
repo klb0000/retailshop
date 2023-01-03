@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"projects/retailshop"
-	"projects/retailshop/server"
+
+	"github.com/klb0000/retailshop"
+	"github.com/klb0000/retailshop/server"
 )
 
 var DefaultDB = retailshop.DefaultDB
