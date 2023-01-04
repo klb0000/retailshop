@@ -1,0 +1,117 @@
+<!DOCTYPE html >
+<meta charset="UTF-8">
+<html>
+    <head>
+        <link rel="stylesheet" href="cash_reg.css">
+    </head>
+    <body>
+
+        <nav id="top-nav-bar" class="top-nav-bar">
+
+            <span class="top-nav-bar-item"> Cash Register</span>
+            <span id ="time-display" class="top-nav-bar-item">00:00:00:??</span>
+            <span class="top-nav-bar-item">Manager</span>
+
+
+        </nav >
+
+        <div class="add-product">
+            <div class="scan-del">
+                <button class="delete-button" onclick="deleteFromTransaction()">Del</button>
+                <input  class="barcode-input" classtype="text" id="in" >
+                <button id="scan-b" class="scan-button" onclick="getProduct()">SCAN</button>
+            </div>
+            <div class="keypad">
+                <div id="keypad1" class="key">1</div>
+                <div id="keypad2" class="key">2</div>
+                <div id="keypad3"  class="key">3</div>
+                <div id="keypad4" class="key">4</div>
+                <div id="keypad5" class="key">5</div>
+                <div id="keypad6" class="key">6</div>
+                <div id="keypad7" class="key">7</div>
+                <div id="keypad8" class="key">8</div>
+                <div id="keypad9" class="key">9</div>
+                <div id="keypad0" class="key">0</div>
+                <div id="keypad-delete" class="key-delete">delete</div>
+              </div>
+        </div>
+
+    <div class="main-display">
+
+        <div class="cash-register-table">
+
+            <table class="trans-table" id="trans-table" ></table>
+
+        </div>
+        <div class="check-out">
+
+            <button id="pay-button" class="pay-button">Pay with Cash</button>
+        </div>
+
+        <div class="total-status" id="status">
+            <span id="total-items">Total itmes: 0</span><br>
+            <span id="sub-total-amount">Sub Total: 0</span><br>
+            <span id="total-tax-amount">Tax: 0</span><br>
+            <span>-------------------------</span><br>
+            <span id="grand-total-amount">Grand Total: $0</span><br>
+        </div>
+    </div>
+
+        <!-- <div class="trans-detail">
+            <h3 id="grand-total">Total:</h3>
+        </div>
+
+           -->
+
+
+        <!-- HTML for the login form -->
+<div class ="pay-form" id="pay-form">
+    <div class="payment-info" id="status">
+        <span id="payment-due">Grand Total : </span><br>
+    </div>
+    <div class="cash-recieved">
+        <label class="cash-recieved" for="cash-input">Enter Cash Recieved</label>
+        <input class="cash-input" id="cash-input" type="number">
+    </div>
+
+    <div class="complete-payment-button">
+        <button class="complete-payment" id="complete-payment">Pay</button>
+        <button class="complete-payment" id="cancel-payment">Cancel</button>
+    </div>
+  </div>
+
+  <div  id="create-product" class="create-product" >
+        <label for="productID">Product Id</label>
+        <input class="create-product" required type="text" id="productID" name="productId"><br>
+      
+        <label for="productName">Product Name</label>
+        <input class="create-product" required type="text" id="productName" name="productName"><br>
+      
+        <label for="price">Price</label>
+        <input required class="create-product" type="number" id="price"  name="price"><br>
+      
+        <input class="create-product" type="submit" id="create" value="Create" onclick="CreateProduct()">
+        <input class="cancel-create-product" type="submit" id="cancel-create-product" value="Cancel" >
+    </div>
+
+
+  
+  <!-- <button id="prompt-button">Show Prompt</button> -->
+  <!-- Button to show the login form -->
+  <!-- <button id="login-button">Show Login Form</button> -->
+  
+  <nav id ="bottom-nav" class="bottom-nav">
+    <ul>
+    <li><button id="register-product" style="width: 100%;height: 100%;">Register Product</button></li>
+      <li><a href="#">Home</a></li>
+      <!-- <li><a href="#">About</a></li> -->
+      <!-- <li><a href="#">Contact</a></li> -->
+    </ul>
+  </nav>
+  
+
+    </body>
+
+    <script  src="pos.js">
+    </script>
+</html>

@@ -1,0 +1,426 @@
+
+/* Top Nav Bar */
+.top-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 20px;
+}
+
+.top-nav-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.top-nav-bar a:hover {
+  color: #ccc;
+}
+
+.top-nav-bar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+  .top-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .top-navbar a {
+    margin: 10px 0;
+  }
+}
+
+
+  
+  .main-display {
+      background-color: rgb(189, 195, 213);
+      width: 70%;
+      height: 680px;
+    }
+
+
+
+
+.cash-register-table {
+  width: 100%;
+  height: 400px;
+  background-color: rgb(67, 83, 121);
+  overflow: scroll;
+  float: right;
+  margin: 0% 0%;
+  /* border: 1px solid rgba(0, 0, 0, 0.268); */
+
+}
+
+ table.trans-table {
+    text-align: left;
+    float: left;
+    position: relative;
+    border-collapse: collapse;
+    width: 100%; 
+
+  }
+
+  tr.trans-row {
+    background-color: #1d1d02;
+    /* background-color: #f2f8ed; */
+    border: 1px solid rgba(238, 218, 218, 0.268); 
+    text-align: center; /* align the text to the left */
+    font-size: 20px;
+    height: 30px;
+    color:rgb(239, 238, 222)
+    
+  }
+
+  tr.trans-row:hover {
+    background-color: #212105;
+  }
+  
+  .top-row {
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+    position: sticky;
+    top: 0;
+    height:  30px;
+    width: 100%;
+    background-color: rgb(234, 236, 241);
+    color: rgb(0, 0, 0);
+  }
+
+
+
+  .trans-detail {
+    top: 10;
+    position: sticky;
+    background-color: beige;
+    float: right;
+  } 
+  
+  .add-product {
+    background-color: rgb(224, 228, 239);
+    height: 680px;
+    width: 30%;
+    float: right;
+  }
+  .scan-del {
+    width: 100%;
+    height: 50px;
+    margin-top: 5%;
+    /* margin-left: 2%;
+    margin-right: 2%; */
+    background-color: #ccc;
+  }
+
+  input.barcode-input {
+    /* Apply some basic styles */
+    /* padding: 8px; */
+    padding-top: 4px;
+    padding-bottom: 4px;
+    float: left;
+    width: 50%;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 20px;
+ 
+  }
+
+  button.scan-button {
+    width: 25%;
+    height: 50px;
+    margin: 0 2px;
+    border-radius: 15px;
+    border: 1px solid #090101;
+    float:left;
+    background-color: #ffffff;
+    /* color: #ffffff; */
+    color: #140303;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button.scan-button:hover {
+    background-color: #ffffffc6;
+  }
+  button.scan-button:active {
+    background-color: #aaa138;
+  }
+
+
+  button.delete-button {
+    width: 20%;
+    height: 50px;
+    margin: 0px 2px;
+    border-radius: 10px;
+    float: left;
+    border: 1px solid #090101;
+    background-color: #d5d4e8;
+    color: #140303;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button.delete-button:active {
+    background-color: #b5b4d3;
+  }
+
+
+  .check-out {
+    width: 40%;
+    height: 100px;
+    float: left;
+    background-color: rgb(242, 251, 243);
+    margin-top: 40px;
+    margin-left: 4%;
+  }
+  
+  button.pay-button {
+    width: 25%;
+    height:100px;
+    margin: 0px 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #d5d4e8;
+    color: #090101;
+    font-size: 30px;
+    cursor:pointer;
+    /* margin-top: 10px; */
+    float: right;
+  }
+  button.pay-button:active {
+    background-color: #b2d9c2;
+  }
+
+  
+  /* add a hover effect to the rows */
+  /* tr:hover {
+    background-color: #f5f5f5;
+  } */
+  
+
+
+.keypad {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 450px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-left: 5pc;
+  margin-top: 10%;
+}
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  margin: 2px 4px;
+  cursor: pointer;
+}
+.key:hover {
+  background-color: #ddd;
+}
+
+.key-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 75px;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.key-delete:hover {
+  background-color: #ddd;
+}
+
+
+
+.total-status {
+  /* padding-block: 10%; */
+  width: 20%;
+  height: 200px;
+  font-size: 20px;
+  padding-right: 5px;
+  background-color: rgb(63, 96, 197);
+  margin-top: 10px;
+  margin-right: 2%;
+  border-radius: 10px;
+  color: #ffffff;
+  float: right;
+  text-align: right;
+  /* position: stick; */
+}
+
+ 
+
+
+  /* Style for the login form */
+.pay-form {
+  display: none; /* Hide the login form by default */
+  position: fixed;
+  /* padding: 10px 10px; */
+  z-index: 1; 
+  left: 25%;
+  top: 25%;
+  width: 40%; /* Make the login form take up the full width of the screen */
+  height: 400px; /* Make the login form take up the full height of the screen */
+  overflow: auto; /* Enable scrollbars if the content is too tall */
+  background-color: rgba(20, 73, 208, 0.725); /* Add a translucent background color */
+}
+
+.payment-info {
+  font-size: 20px;
+  color: white;
+}
+
+cash-recieved {
+  margin: 15% 10%;
+  
+}
+
+label.cash-recieved {
+  color: white;
+  font-size: 20px;
+}
+
+/* Style for the login form's content */
+input.cash-input {
+  text-align: right;
+  font-size: 30px;
+  background-color: #fefefe;
+  width: 80%; /* Set the width of the form */
+  padding: 10px;
+  border: 1px solid #888;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.complete-payment-button {
+  width: 60%;
+  height: 20%;
+  background-color: rgba(34, 140, 45, 0.288);
+}
+button.complete-payment {
+  width: 40%;
+  height: 100%;
+  font-size: 20px;
+}
+
+input.create-product[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input.create-product[type=submit] {
+  width: 70%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 40px 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input.create-product[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div.create-product {
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  display: none; /* Hide the login form by default */
+  position: fixed;
+  /* padding: 10px 10px; */
+  z-index: 1; 
+  left: 25%;
+  top: 25%;
+  width: 40%; /* Make the login form take up the full width of the screen */
+  height: 400px; /* Make the login form take up the full height of the screen */
+  overflow: auto; /* Enable scrollbars if the content is too tall */
+  /* background-color: rgba(20, 73, 208, 0.725); */
+
+}
+
+
+/* Style for the login form's input fields */
+/* #login-form input[type="text"], #login-form input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+} */
+
+/* Style for the login form's submit button */
+/* #login-form button[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+} */
+
+/* Style for the login form's submit button when it is hovered over */
+#login-form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+
+nav.bottom-nav {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background-color: #333;
+}
+
+nav.bottom-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav.bottom-nav li {
+  flex: 1;
+  text-align: center;
+}
+
+nav.bottom-nav a {
+  display: block;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+nav.bottom-nav a:hover {
+  background-color: rgb(48, 42, 42);
+}

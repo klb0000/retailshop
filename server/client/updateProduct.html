@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="stylesheet" href="global.css">
+    </head>
+    <body>
+        <h1>UPDATE PRODUCT</h1>
+        <input type="text" id="in" size="60">
+        <button class="search-button" onclick="sendQuery()">SEARCH</button>
+        <h2 id="result"></h3>
+        <table id="products"></table>
+
+        <div id="updateForm" hidden  style="max-width: 500px; margin-top: 3%; margin-left: 30%;">
+            
+                <link  scoped rel="stylesheet" href="form.css">
+            
+        
+            <!-- <form> -->
+                <label for="productID">Product Id</label>
+                <input type="text" id="productID" name="productId"><br>
+              
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" name="productName"><br>
+              
+                <label for="price">Price</label>
+                <input type="number" id="price"  name="price"><br>
+              
+                <input type="submit" id="create" value="Update" onclick="CreateProduct()">
+              <!-- </form> -->
+            
+              </div>
+
+    </body>
+    
+
+
+        <script>
+                
+            function sendQuery () {
+                const input = document.getElementById("in")
+                const q = input.value
+                var r = new XMLHttpRequest()
+                r.open('GET', 'http://localhost:8080/getByID?id='+q)
+                
+                r.onload = ()=> {
+                    const updateForm = document.getElementById("updateForm")
+                    if (r.status !== 200) {
+                        // alert(`product with id ${q} not found`)
+                        // table.innerHTML= ''
+                        updateForm.style.visibility = "hidden"
+                        result.innerHTML = 'found no product to update'
+                        return
+                    }
+                    result.innerHTML = ''
+                    updateForm.style.visibility = "visible"
+                    updateForm.style.display = "block"
+                    const jsonObj = JSON.parse(r.responseText)
+                    document.getElementById("productID").value = jsonObj.ID 
+                    document.getElementById("productName").value = jsonObj.Name 
+                    document.getElementById("price").value = jsonObj.Price
+
+                }
+                console.log('sending request')
+                r.send()
+            } 
+                
+        </script>
+ 
+    
+
+</html>
+
+
