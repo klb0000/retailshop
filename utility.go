@@ -22,4 +22,3 @@ func GetDB(file string) *gorm.DB {
 	}
 	return db
 }
-
