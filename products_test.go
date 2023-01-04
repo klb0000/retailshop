@@ -47,6 +47,18 @@ func TestInsertAndDeleteProduct(t *testing.T) {
 	}
 }
 
+func TestQAllProducts(t *testing.T) {
+	db := initDB()
+	defer db.Close()
+
+	products, err := QAllProduct(db)
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(products[0])
+
+}
+
 func TestQProductByName(t *testing.T) {
 	db := initDB()
 	defer db.Close()

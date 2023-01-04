@@ -178,7 +178,7 @@
     width: 40%;
     height: 100px;
     float: left;
-    background-color: rgb(242, 251, 243);
+    /* background-color: rgb(242, 251, 243); */
     margin-top: 40px;
     margin-left: 4%;
   }

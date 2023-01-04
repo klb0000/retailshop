@@ -1,24 +1,16 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-	</head>
-	
-	<body>
+  <head> </head>
 
-	</body>
-	<script>
-		var r = new XMLHttpRequest()
-		r.open('GET', 'http://192.168.11.3:8080/getAll')
-		
-		r.onload = ()=> {
-							console.log(r.responseText)
-							}
-		console.log('sending request')
-		r.send()
-		
-	</script>
+  <body></body>
+  <script>
+    var r = new XMLHttpRequest();
+    r.open("GET", "http://localhost:8080/getAll");
 
-
+    r.onload = () => {
+      console.log(r.responseText);
+    };
+    console.log("sending request");
+    r.send();
+  </script>
 </html>
-
-

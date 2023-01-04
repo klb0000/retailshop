@@ -1,69 +1,62 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-        <link rel="stylesheet" href="form.css">
+  <head>
+    <link rel="stylesheet" href="form.css" />
+  </head>
 
-	</head>
-	
-	<body>
+  <body>
+    <div style="max-width: 500px; margin-top: 15%; margin-left: 30%">
+      <!-- <form> -->
+      <label for="productID">Product Id</label>
+      <input type="text" id="productID" name="productId" /><br />
 
-        <div style="max-width: 500px; margin-top: 15%; margin-left: 30%;">
-        <!-- <form> -->
-            <label for="productID">Product Id</label>
-            <input type="text" id="productID" name="productId"><br>
-          
-            <label for="productName">Product Name</label>
-            <input type="text" id="productName" name="productName"><br>
-          
-            <label for="price">Price</label>
-            <input type="number" id="price"  name="price"><br>
-          
-            <input type="submit" id="create" value="Create" onclick="CreateProduct()">
-          <!-- </form> -->
-          </div>
-		  <h2 id="createStatus"></h2>
-          
-	</body>
-	<script>
-		function CreateProduct() 
-		{
-			// console.log("hello")
-			const id = document.getElementById("productID").value
-			const name = document.getElementById("productName").value
-			const price = Number(document.getElementById("price").value)
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" name="productName" /><br />
 
-			obj = {
-				'ID': id,
-				'Name': name,
-				'Price': price,
-				
-			}
-			console.log(obj)
-			jsonData = JSON.stringify(obj)
+      <label for="price">Price</label>
+      <input type="number" id="price" name="price" /><br />
 
-			var r = new XMLHttpRequest()
+      <input
+        type="submit"
+        id="create"
+        value="Create"
+        onclick="CreateProduct()"
+      />
+      <!-- </form> -->
+    </div>
+    <h2 id="createStatus"></h2>
+  </body>
+  <script>
+    function CreateProduct() {
+      // console.log("hello")
+      const id = document.getElementById("productID").value;
+      const name = document.getElementById("productName").value;
+      const price = Number(document.getElementById("price").value);
 
-			r.open('POST', 'http://192.168.11.3:8080/createProduct')
-			// r.setRequestHeader('Content-Type', 'application/json');
-			r.onload = ()=> {
-				
-				const status = document.getElementById("createStatus")
-				if (r.status !== 200) {
-						console.log(r.status)
-						status.innerHTML = '...............Failed to Create new product'
-						return	
-				}
-				console.log(r.status)
-				status.innerHTML = '..............Successfully Created new product'
-			}
-			console.log('sending request')
-			r.send(jsonData)
-					
-	}
-		
-	</script>
+      obj = {
+        ID: id,
+        Name: name,
+        Price: price,
+      };
+      console.log(obj);
+      jsonData = JSON.stringify(obj);
 
+      var r = new XMLHttpRequest();
 
+      r.open("POST", "http://localhost:8080/createProduct");
+      // r.setRequestHeader('Content-Type', 'application/json');
+      r.onload = () => {
+        const status = document.getElementById("createStatus");
+        if (r.status !== 200) {
+          console.log(r.status);
+          status.innerHTML = "...............Failed to Create new product";
+          return;
+        }
+        console.log(r.status);
+        status.innerHTML = "..............Successfully Created new product";
+      };
+      console.log("sending request");
+      r.send(jsonData);
+    }
+  </script>
 </html>
-
-
