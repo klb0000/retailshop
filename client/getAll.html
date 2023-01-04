@@ -27,7 +27,7 @@
             }
         }
             var r = new XMLHttpRequest()
-            r.open('GET', 'http://localhost:8080/getAll')
+            r.open('GET', 'http://192.168.11.3:8080/getAll')
             
             r.onload = ()=> {
                 const objLst = JSON.parse(r.responseText)

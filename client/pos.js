@@ -252,7 +252,7 @@ function getProduct() {
     const input = document.getElementById("in")
     const q = input.value
     var r = new XMLHttpRequest()
-    r.open('GET', 'http://localhost:8080/getByID?id='+q)
+    r.open('GET', 'http://192.168.11.3:8080/getByID?id='+q)
     
     r.onload = ()=> {
         

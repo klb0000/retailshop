@@ -24,6 +24,6 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println(len(products))
-	server.Serve("localhost:8080")
+	server.Serve("192.168.11.3:8080")
 
 }
