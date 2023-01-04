@@ -7,7 +7,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"projects/retailshop"
+	"os"
+
+	"github.com/klb0000/retailshop"
 )
 
 var defaultDB = retailshop.DefaultDB
@@ -89,6 +91,12 @@ func Serve(addr string) {
 	http.HandleFunc("/getAll", handleGetAllPrdocuts)
 	http.HandleFunc("/getByID", GetById)
 	http.HandleFunc("/createProduct", CreateProduct)
-	http.Handle("/", http.FileServer(http.Dir("/Users/vikram/go/src/projects/retailshop/client")))
+	root, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("client root: %s", root)
+	http.Handle("/", http.FileServer(http.Dir(root)))
 	log.Fatal(http.ListenAndServe(addr, nil))
 }

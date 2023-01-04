@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	
+	<body>
+
+	</body>
+	<script>
+		var r = new XMLHttpRequest()
+		r.open('GET', 'http://localhost:8080/getAll')
+		
+		r.onload = ()=> {
+							console.log(r.responseText)
+							}
+		console.log('sending request')
+		r.send()
+		
+	</script>
+
+
+</html>
+
+
